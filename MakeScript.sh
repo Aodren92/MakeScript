@@ -42,14 +42,19 @@ echo "#*************************************************************************
 	done
 	for FILES in $CFILES
 	do
-		if [ "$INDEX" == "0" ]
+		if [ "$NBRFILES" == "0" ]
 		then
-			echo "\nSRC = $FILES \\" >> Makefile
-		elif [ "$INDEX" == "$NBRFILES" ]
-		then
-			echo "$TAB$FILES" >> Makefile
+				echo "\nSRC = $FILES" >> Makefile
 		else
-			echo "$TAB$FILES \\" >> Makefile
+			if [ "$INDEX" == "0" ]
+			then
+				echo "\nSRC = $FILES \\" >> Makefile
+			elif [ "$INDEX" == "$NBRFILES" ]
+			then
+				echo "$TAB$FILES" >> Makefile
+			else
+				echo "$TAB$FILES \\" >> Makefile
+			fi
 		fi
 			let "INDEX = INDEX + 1"
 	done

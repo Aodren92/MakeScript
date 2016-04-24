@@ -5,38 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abureau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/04/22 17:17:30 by abureau           #+#    #+#              #
-#    Updated: 2016/04/22 17:17:30 by abureau          ###   ########.fr        #
+#    Created: 2016/04/24 17:13:18 by abureau           #+#    #+#              #
+#    Updated: 2016/04/24 17:13:18 by abureau          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = out
+NAME = test
 
-SRC = ./*/*.c \
+SRC = ./main.c
 
 CC = gcc
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -g -Wall -Wextra
+CFLAGS = 
 
-all: LIBCOMPILE $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $@ $^ -I libft/includes -L libft/ -lft -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
-
-LIBCOMPILE:
-	 make -C libft/
+	$(CC) -o $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I libft/includes -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	rm -f $(OBJ)
-	 make -C libft/ clean
 
 fclean: clean
 	rm -f $(NAME)
-	 make -C libft/ fclean
 
 re: fclean all
